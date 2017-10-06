@@ -121,7 +121,8 @@ config.projection = {
 }
 
 config.render = {
-  font_type: "Helvetica"
+    font_type: "Helvetica"
+    //font_type: "sans-serif"
 }
 
 config.pic = {
