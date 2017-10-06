@@ -1,4 +1,5 @@
 import {get_image, image_ready} from '../image_cache';
+import config from '../global_config';
 
 function render(context, shape) {
   let image = shape.img ? shape.img : get_image(shape.src, shape.filename);
@@ -18,13 +19,18 @@ function render(context, shape) {
     }
     context.clip();
   }
-  
+
+  // LAKA : set transparency level 
+  context.globalAlpha = config.image_opacity;
+
   if (shape.sx && shape.sy && shape.sw && shape.sh) {
-    context.drawImage(image, shape.sx, shape.sy, shape.sw, shape.sh, shape.x, shape.y, shape.w, shape.h);  
+      context.drawImage(image, shape.sx, shape.sy, shape.sw, shape.sh, shape.x, shape.y, shape.w, shape.h);  
   } else {
-    context.drawImage(image, shape.x, shape.y, shape.w, shape.h);
+      context.drawImage(image, shape.x, shape.y, shape.w, shape.h);
   }
-  
+
+  // LAKA : remove transparency level 
+  context.globalAlpha = 1;
   
   if (shape.clip) {
     context.restore();

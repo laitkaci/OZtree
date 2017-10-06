@@ -2,6 +2,11 @@
  */
  let config = {};
 
+/** LAKA Additionnal parameters
+ */
+config.image_opacity = 0.7;
+config.image_scale = 1;
+
 /**
   * @property {object}  factory                - 
   * @property {number}  factory.child_num      - The number of children per node.
