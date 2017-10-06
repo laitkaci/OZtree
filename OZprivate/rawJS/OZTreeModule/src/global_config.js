@@ -6,6 +6,8 @@
  */
 config.image_opacity = 0.7;
 config.image_scale = 1;
+config.branch_width = 0.15;
+
 
 /**
   * @property {object}  factory                - 
