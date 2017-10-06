@@ -136,6 +136,7 @@ function setup(
   return_value.utils.number_convert = number_convert;
   return_value.utils.view_richness = view_richness;
   return_value.utils.process_taxon_list = process_taxon_list;
+  return_value.api_manager = api_manager;
 
   return return_value;
 }
