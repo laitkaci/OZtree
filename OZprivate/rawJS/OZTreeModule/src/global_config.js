@@ -4,10 +4,9 @@
 
 /** LAKA Additionnal parameters
  */
-config.image_opacity = 0.7;
-config.image_scale = 1;
-config.branch_width = 0.15;
-
+ config.image_scale = 2.0;
+ config.branch_width = 0.02;
+ config.image_opacity = 0.65;
 
 /**
   * @property {object}  factory                - 

@@ -1,13 +1,20 @@
-let green1= 'rgb(135,215,90)';
-let green2 = 'rgb(70,135,30)';
-let red1 = 'rgb(225,180,155)'; // green1;//
-let red2 = 'rgb(140,20,20)'; // green2;//
-let branch_color = 'rgb(125, 125, 125)';
-let bar_color = 'rgb(107, 107, 107)';
-let hightlight_color = 'rgba(255, 255, 255, .5)';
-let int_text_stroke_hover = 'rgb(96,96,96)';
+
+// LAKA : Changed
+let branch_color = '#999999';
+//let leaf_color_1 = 'rgba(56,78,138, 0.7)';
+let leaf_color_1 = '#666666';
+//let leaf_color_1 = 'rgba(255, 255, 255, 0.35)';
+let leaf_color_2 = 'rgba(140, 20, 20, 0.35)';
+let leaf_text_color = '#FFFFFF'
+
 let int_text_fill_hover = 'rgb(255,255,255)';
 let int_text_fill = 'rgb(255,255,255)';
+let int_text_stroke_hover = 'rgb(96,96,96)';
+
+let red1 = 'rgb(225,180,155)'; // leaf_color_1;//
+let red2 = 'rgb(140,20,20)'; // leaf_color_2;//
+let bar_color = 'rgb(107, 107, 107)';
+let hightlight_color = 'rgba(255, 255, 255, .5)';
 let int_sponsor_fill_hover = 'rgb(255, 255, 255)';
 let int_sponsor_fill = 'rgb(180, 180, 180)';
 
@@ -16,11 +23,11 @@ let iucnEW = 'rgb(200,200,200)';
 let iucnCR = red1;
 let iucnEN = red1;
 let iucnVU = red1;
-let iucnNT = green1;
-let iucnLC = green1;
-let iucnDD = green1;
-let iucnNE = green1;
-let iucnDefault = green1;
+let iucnNT = leaf_color_1;
+let iucnLC = leaf_color_1;
+let iucnDD = leaf_color_1;
+let iucnNE = leaf_color_1;
+let iucnDefault = leaf_color_1;
 
 function outline_highlight(node) {
   if (node.richness_val > 1) {
@@ -59,7 +66,7 @@ function leafcolor1(node) {
   if (node.richness_val > 1 && node.threatened_branch) {
     return red1;
   } else if (node.richness_val > 1) {
-    return green1;
+    return leaf_color_1;
   } else {
     return get_redlist_color(node);
   }
@@ -113,7 +120,7 @@ function leafcolor2(node) {
     if (node.threatened_branch == true) {
       return red2;
     }
-    return green2;
+    return leaf_color_2;
   } else {
     return(get_redlist_color2(node));
   }
@@ -136,17 +143,17 @@ function get_redlist_color2(node) {
     return red2;
     //return ('rgb(170,0,0)');
     case "NT":
-    return green2;
+    return leaf_color_2;
     case "LC":
-    return green2;
+    return leaf_color_2;
     case "DD":
-    return green2;
+    return leaf_color_2;
     //return ('rgb(60,50,135)');
     case "NE":
-    return green2;
+    return leaf_color_2;
     //return ('rgb(0,0,190)');
     default:
-    return green2;
+    return leaf_color_2;
   }    
 }
 
@@ -208,7 +215,7 @@ function copyright_text_fill(node) {
 
 function copyright_text_highlight_fill(node) {
   if (node.richness_val > 1) {
-    return 'rgb(0,0,0)';
+    return 'rgb(255,255,255)';
   } else {
     return 'rgb(255,255,255)';
   }
@@ -344,7 +351,7 @@ const treelife1_theme = {
     },
     
     text: {
-      fill: 'rgb(0,0,0)'
+        fill: leaf_text_color
     },
     
     'text_hover': {
