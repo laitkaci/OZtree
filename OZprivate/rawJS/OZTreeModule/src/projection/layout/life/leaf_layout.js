@@ -75,6 +75,28 @@ class LifeLeafLayoutBase extends LeafLayoutBase
     fullLeaf_sponsor(shapes,x,y,r,angle,sponsored,mouseTouch,sponsorText,extraText,commonText,latinText,conservation_text,copyText,imageObject,hasImage,node,requiresCrop,cropMult,cropLeft,cropTop) {        
     }
 
+    // No highlight
+    circle_cut_image(shapes,imageObject,centerpointx,centerpointy,radiusr,borderColor,highlightColor, node) {
+        if (imageObject) {
+     
+            let arc_shape = ArcShape.create();
+            arc_shape.x = centerpointx;
+            arc_shape.y = centerpointy;
+            arc_shape.circle = true;
+            arc_shape.r = radiusr;
+      
+            let image_shape = ImageShape.create();
+            image_shape.img = imageObject;
+            image_shape.x = centerpointx - radiusr;
+            image_shape.y = centerpointy - radiusr;
+            image_shape.w = radiusr * 2;
+            image_shape.h = radiusr * 2;
+            image_shape.clip = arc_shape; 
+            image_shape.height= 5;
+            shapes.push(image_shape);
+        }
+    }
+
     // Draw an opaque image
     circle_cut_image_opaque(shapes,imageObject,centerpointx,centerpointy,radiusr,borderColor,highlightColor, node)
     {
