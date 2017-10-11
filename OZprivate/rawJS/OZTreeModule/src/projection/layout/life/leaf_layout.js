@@ -174,6 +174,20 @@ class LifeLeafLayoutBase extends LeafLayoutBase
             }
         }
     }
+
+    // Make the circle full
+    circle_leaf_shapes(node, shapes) {
+        add_mr(this.get_leaf_x(node), this.get_leaf_y(node), this.get_leaf_radius(node));
+        let arc_shape = ArcShape.create();
+        arc_shape.x = node.xvar + node.rvar * node.arcx;
+        arc_shape.y = node.yvar + node.rvar * node.arcy;
+        arc_shape.r = node.rvar * node.arcr;
+        arc_shape.circle = true;
+        arc_shape.height = 2;
+        arc_shape.do_fill = true;
+        arc_shape.fill.color = color_theme.get_color("leaf.inside.fill", node);
+        shapes.push(arc_shape);
+    }
 }
 
 export default LifeLeafLayoutBase;
