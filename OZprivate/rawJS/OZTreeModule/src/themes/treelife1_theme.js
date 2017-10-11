@@ -287,14 +287,14 @@ const treelife1_theme = {
     },
     'circle': {
       stroke: bar_color,
-      fill: branch_color
+      fill: leaf_color_1 // branch_color // LAKA
     },
     'circle_searchin': {
       stroke: hightlight_color
     },
     'circle_highlight': {
       outer: {
-        fill: branch_color
+          fill: leaf_color_1 // branch_color // LAKA
       },
       inner: {
         fill: hightlight_color
