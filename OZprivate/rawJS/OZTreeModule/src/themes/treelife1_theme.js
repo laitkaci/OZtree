@@ -1,10 +1,8 @@
 
 // LAKA : Changed
 let branch_color = '#999999';
-//let leaf_color_1 = 'rgba(56,78,138, 0.7)';
 let leaf_color_1 = '#666666';
-//let leaf_color_1 = 'rgba(255, 255, 255, 0.35)';
-let leaf_color_2 = 'rgba(140, 20, 20, 0.35)';
+let leaf_color_2 = leaf_color_1;
 let leaf_text_color = '#FFFFFF'
 
 let int_text_fill_hover = 'rgb(255,255,255)';
