@@ -22,7 +22,7 @@ class LifeNodeLayout extends NodeLayoutBase
 
     autopic_set_shapes(node, x, y, width, height, shapes) 
     {
-        let radiusr = 0.2 * width;
+        let radiusr = 0.2 * config.image_scale_node * width ;
 
         // get a random picture
         if (node.image_index === undefined)

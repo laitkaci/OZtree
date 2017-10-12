@@ -20,7 +20,35 @@ class PolytomyNodeLayout extends NodeLayoutBase {
     this.theight = node.rvar * node.arcr * 0.53;
     this.theight2 = node.rvar * node.arcr * 0.37;
   }
-    
+   
+  autopic_set_shapes(node, x, y, width, height, shapes) 
+  {
+      let radiusr = config.image_scale_node * node.rvar * node.arcr * (1-config.projection.partl2/2.0);
+
+      // get a random picture
+      if (node.image_index === undefined)
+          node.image_index = Math.floor(node.num_pics * Math.random());       
+      let pic_info = node.get_picset_src_info(node.image_index);
+
+      // draw it
+      let arc_shape = ArcShape.create();
+      arc_shape.x = x;
+      arc_shape.y = y;
+      arc_shape.circle = true;
+      arc_shape.r = radiusr;
+      
+      let image_shape = ImageShape.create();
+      image_shape.src = pic_info[0];
+      image_shape.filename = pic_info[1];
+      image_shape.x = x - radiusr;
+      image_shape.y = y - radiusr;
+      image_shape.w = radiusr * 2;
+      image_shape.h = radiusr * 2;
+      image_shape.clip = arc_shape; 
+      image_shape.height= 5;
+      shapes.push(image_shape);
+  }    
+
     interior_circle_shapes(node, shapes) {
         
         // uncomment this to get guidelines
@@ -43,7 +71,7 @@ class PolytomyNodeLayout extends NodeLayoutBase {
         shapes.push(horizonarc);
         //*/
         
-        let condition = node.rvar > config.projection.node_low_res_thres && config.projection.interior_circle_draw;
+        /*let condition = node.rvar > config.projection.node_low_res_thres && config.projection.interior_circle_draw;
         if (!condition) return;
         let arc_shape = ArcShape.create();
         if (!this.hovered && this.live_area_interior_circle_test(node)) {
@@ -59,7 +87,7 @@ class PolytomyNodeLayout extends NodeLayoutBase {
         arc_shape.order = "fill_first";
         arc_shape.do_stroke = true;
         arc_shape.stroke.line_width = node.arcr * config.projection.partl2 * node.rvar;
-        arc_shape.stroke.color = color_theme.get_color('interior.circle.stroke', node);
+        arc_shape.stroke.color = color_theme.get_color('interior.circle.stroke', node);*/
         /*
         // James - I think this code allows the stroke around an interior circle to be a different colour depending on whether it's a search hit or not. This never happens, which I think is beacuse it's bugged
         // for now I'm simply removing as this was not such an important feature anyway.
@@ -77,14 +105,17 @@ class PolytomyNodeLayout extends NodeLayoutBase {
             }
         }
         */
-        arc_shape.do_fill = true;
+        /*arc_shape.do_fill = true;
         arc_shape.fill.color = color_theme.get_color('interior.circle.fill', node);
         if (this.hovering) {
             arc_shape.stroke.color = color_theme.get_color('interior.circle_hover.stroke', node);
             arc_shape.fill.color = color_theme.get_color('interior.circle_hover.fill', node);
         }
         this.hovering = false;
-        shapes.push(arc_shape);
+        shapes.push(arc_shape);*/
+    }
+
+    high_res_sponsor_shapes(node, shapes) {
     }
 }
 

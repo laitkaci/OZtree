@@ -5,6 +5,7 @@
 /** LAKA Additionnal parameters
  */
  config.image_scale = 2.0;
+ config.image_scale_node = 2.0;
  config.branch_width = 0.02;
  config.image_opacity = 0.65;
 
