@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <meta NAME="description" CONTENT="OneZoom Tree of Life Explorer" />
@@ -70,7 +70,7 @@ var server_urls = {
 /* UI functions that allow javascript in the main viewer to interact with the UI - these refer to items in the viewer_UI file */
 
 var UI_callbacks = {
-  
+
   badOTT: function(ott) { /* used within setup_page.js when the page tries to load a bad location */
     $('#error-modal .uk-modal-dialog > p').hide();
     $('#error-modal .uk-modal-dialog > p.badOTT').show();
@@ -169,9 +169,9 @@ function load_tab(tab_content, embed_if_possible, remove_embed_links) {
             }
         }
 {{if setup_params.get('md_hack_show_embedded_sponsorship'):}}
-        //The following is only currently useful for the museum display, as it doesn't 
+        //The following is only currently useful for the museum display, as it doesn't
         //work for the "available" sponsor page, or the sponsor_node page, both of which
-        //rely on javascript (e.g. AJAX) within the embedded html. 
+        //rely on javascript (e.g. AJAX) within the embedded html.
         if (tab_content.hasClass('ozspons')) {
             inject_web2py_page(tab_content, tab_content.attr('data-src'), remove_embed_links);
             return;
@@ -180,7 +180,7 @@ function load_tab(tab_content, embed_if_possible, remove_embed_links) {
       }
       //else default to embedding as an iframe
       //console.log("trying to create iframe with src = " + tab_content.attr('data-src'))
-      var ifrm = document.createElement("iframe"); 
+      var ifrm = document.createElement("iframe");
       ifrm.setAttribute('src', tab_content.attr('data-src'));
       ifrm.setAttribute('onload', '$(".loading_pic", $(this).parent().parent()).hide()');
       ifrm.setAttribute("sandbox", "allow-same-origin allow-scripts allow-forms allow-popups");
@@ -189,7 +189,7 @@ function load_tab(tab_content, embed_if_possible, remove_embed_links) {
   }
 }
 
-/* The function 'sponsor_page_link', if defined, is called as an onclick event in anchor links from the sponsor_node page 
+/* The function 'sponsor_page_link', if defined, is called as an onclick event in anchor links from the sponsor_node page
  * Here we tell it not to follow the normal link, but to take a .load page (saved as a url in data-href-component)
  * And load it into the parent 'popup-content' div
  */
@@ -257,9 +257,9 @@ function inject_web2py_page(selector, url, removelinks) {
  * then use the page name to get the rest_v1 wikipedia machine-readable page (see
  * https://en.wikipedia.org/api/rest_v1/ ), and inject it into the page within a <div>
  * tag of class "popup-content", using Jquery to remove links from the injected html
- * where necessary. Note that we also need to get the wikipedia stylesheet 
+ * where necessary. Note that we also need to get the wikipedia stylesheet
  * for that page (which may differ from page to page, depending on loaded components), and
- * inject that into the head of the current page. We need to make sure that wikipedia-defined 
+ * inject that into the head of the current page. We need to make sure that wikipedia-defined
  * css rules do not interfere with our own layout.
  */
 function inject_wikipage(selector, lang, Qid, removelinks) {
@@ -370,7 +370,7 @@ function searchPopulate(searchbox, search_result, click_callback_id_name) {
         if (!is_sponsored(search_result[0])) {
             $(".search_hits", dropdown).append($('<dt></dt>').text(OZstrings['NameHits']))
         }
-        var sponsored=false;         
+        var sponsored=false;
         $.each(search_result, function() {
             var result = this;
             if ((sponsored==false) && (is_sponsored(result))) {
@@ -393,7 +393,7 @@ function searchPopulate(searchbox, search_result, click_callback_id_name) {
     UIkit.dropdown(dropdown).show();
 }
 
-/* Add a set of species (e.g. popular species) to a target list, 
+/* Add a set of species (e.g. popular species) to a target list,
  * by using the onezoom.utils.process_taxon_list() function
  * to map OTT ids to OneZoom IDs / vernacular names.
  * The parameter 'click_callback_id_name' should be a
@@ -404,7 +404,7 @@ function setup_location_list(target, taxon_list, click_callback_id_name) {
     target.empty();
     onezoom.utils.process_taxon_list(
         //map the pop species headers to look up strings, for translations
-        taxon_list.map(function(x) {if (($.type(x) === "string") && (x in OZstrings)) {return OZstrings[x];} else {return x;}}), 
+        taxon_list.map(function(x) {if (($.type(x) === "string") && (x in OZstrings)) {return OZstrings[x];} else {return x;}}),
         function(ott, given_name, sciname, OZid) {
             if (OZid) {
                 target.append(
@@ -457,7 +457,7 @@ function update_location_menu(loc_root) {
   // add the main elements, in reverse order
   for (var i = my_location_names.length-1; i >= 0; i--)
   {
-    /* TODO - we don't use the richness of the current location 
+    /* TODO - we don't use the richness of the current location
     should be returned in my_location_richness[my_location_names.length] */
     var richnessProportion = Math.min((my_location_richness[i])/(my_location_richness[my_location_names.length-1-i]),0.9);
     var richnessRemainder = Math.floor((1.0 - richnessProportion)/2.0 * $('#locationDropdown').width());
@@ -490,10 +490,10 @@ function load_into_searchbox(searchbox, OZIDin, given_name, sciname, colour) {
     //do a closeAndLeap() to the appropriate place
     //will also jump to the common ancestor of all the marked places
     //capitalise the common name
-    var searchresult = $('.searchresult', searchbox);    
+    var searchresult = $('.searchresult', searchbox);
     if (given_name) given_name = given_name.charAt(0).toUpperCase() + given_name.slice(1);
     if (given_name && sciname) {
-        $('input',searchresult).attr('value', given_name + " (" + sciname + ")");    
+        $('input',searchresult).attr('value', given_name + " (" + sciname + ")");
     } else {
         $('input',searchresult).attr('value',(given_name || '') + (sciname || ''));
     }
@@ -507,14 +507,14 @@ function load_into_searchbox(searchbox, OZIDin, given_name, sciname, colour) {
 };
 
 function UI_reset_marked(searchbox, OZIDin, given_name, sciname, event) {
-    //create a new mark, and load into a searchbox 
-    var searchresult = $('.searchresult', searchbox);    
+    //create a new mark, and load into a searchbox
+    var searchresult = $('.searchresult', searchbox);
     UIkit.dropdown($('.search_dropdown', searchbox)).hide();
     if (searchresult.attr('data-OZid')) {
         onezoom.controller.unmark_area(searchresult.attr('data-OZid'));
     }
     var colour = onezoom.controller.mark_area(OZIDin);
-    load_into_searchbox(searchbox, OZIDin, given_name, sciname, colour);    
+    load_into_searchbox(searchbox, OZIDin, given_name, sciname, colour);
     closeAndLeap(event, onezoom.controller.get_ancestor_of_marked(), searchbox);
 }
 
@@ -572,7 +572,7 @@ function add_advanced_searchbox(OZid, name, sciname, col) {
     console.log($(event.currentTarget).html());
     });
 
-    
+
     $('.searchresult .icon-beside-input .main-icon', box_selector)
         .click(function(event) {
             var OZid = $(event.currentTarget).closest('.searchresult').attr('data-OZid');
@@ -580,7 +580,7 @@ function add_advanced_searchbox(OZid, name, sciname, col) {
             event.preventDefault();
             event.stopPropagation();
         })
-        
+
     $('.searchresult input', box_selector)
         .click(function(event) {
             var searchbox = $(event.currentTarget).closest('.searchbox');
@@ -592,7 +592,7 @@ function add_advanced_searchbox(OZid, name, sciname, col) {
         });
     $('.searchinput .icon-beside-input .main-icon', box_selector)
         .mousedown(function(event) {
-            // Fires before the blur event, catch this and stop overlaying the result, so that if 
+            // Fires before the blur event, catch this and stop overlaying the result, so that if
             // we lose focus because we touched the magnifying glass, we stil get the dropdown
             var searchbox = $(event.currentTarget).closest('.searchbox');
             if ($('.searchinput input', searchbox).is(":focus")) {
@@ -603,7 +603,7 @@ function add_advanced_searchbox(OZid, name, sciname, col) {
                 return true;
             };
         })
-        
+
     $('.searchinput input', box_selector)
         .blur(function(event) {
             // if we have an already-selected location, and we lose focus, we simply revert
@@ -638,8 +638,8 @@ function add_advanced_searchbox(OZid, name, sciname, col) {
                     searchPopulate(searchbox, res, UI_reset_marked_via_event)}, delay_ms);
             }
         });
-    
-     
+
+
     setup_location_list($('.popular_species', box_selector), popular_locations, UI_reset_marked_via_event);
 
     if (OZid) {
@@ -652,7 +652,7 @@ function add_advanced_searchbox(OZid, name, sciname, col) {
 
 function preventTouchZoom(event) {
     if(event.touches.length > 1) {
-        event.preventDefault(); 
+        event.preventDefault();
         event.stopPropagation();
     };
 }
@@ -692,11 +692,11 @@ function setupUI() {
     })
     $('select#treepage').val('{{=request.function}}');
     $('select#treepage').change(function() {
-        /* slighly yucky function here - to go to the same location on another tree (another page), we 
+        /* slighly yucky function here - to go to the same location on another tree (another page), we
            replace the current url parameter (e.g. life.html, linnean.html, etc) with the
            new value, by search-and-replace in the location.pathname component. We then paste
            the url back together again as "origin + new_pathname + search + hash" */
-        window.location.href= window.location.origin + 
+        window.location.href= window.location.origin +
             window.location.pathname.replace("/{{=request.function}}","/" + this.value) +
             window.location.search +
             window.location.hash;
@@ -723,7 +723,7 @@ function setupUI() {
         $('#locationDropdown').css("min-height","100%");
       })*/
 
-    
+
     $('#advanced_search_button')
       .on("dragover", function(event) {
         $(this).addClass('dragover');
@@ -736,7 +736,7 @@ function setupUI() {
         $(this).removeClass('dragover');
       })
       .on("drop", function(event) {
-        event.preventDefault();  
+        event.preventDefault();
         event.stopPropagation();
         if (event.originalEvent.dataTransfer.getData('taxon')) {
             var dropped_item = $('#' + event.originalEvent.dataTransfer.getData('drop_id'))
@@ -746,13 +746,13 @@ function setupUI() {
                 UI_reset_marked(
                     to_fill,
                     dropped_item.attr("data-OZid"),
-                    dropped_item.attr("data-given_name"), 
+                    dropped_item.attr("data-given_name"),
                     dropped_item.attr("data-sciname")
                 );
             } else {
                 add_advanced_searchbox(
                     dropped_item.attr("data-OZid"),
-                    dropped_item.attr("data-given_name"), 
+                    dropped_item.attr("data-given_name"),
                     dropped_item.attr("data-sciname")
                 );
             }
@@ -764,13 +764,13 @@ function setupUI() {
         //switch on or off common ancestor mode
         toggleAdvancedSearch()
       });
-    
+
     $('#search_form_basic')
       .submit(function(event) {
         //stop form submission reloading the page
         event.preventDefault();
       })
-    
+
     $('#search-basic .searchinput input')
       .keyup(function(event) {
         var searchbox = $(this).closest('.searchbox');
@@ -794,13 +794,13 @@ function setupUI() {
             }, delay_ms);
         }
       });
-    
+
     $('#search-basic .search_dropdown')
         .on('show', function(event) {
             //have to recalc the max height here as we need to dynamically work out the dropbox posn
             $(event.currentTarget).css("max-height", "calc(100vh - 5px - " + $(event.currentTarget).offset().top + "px)");
         })
-    
+
     /* Advanced search stuff */
     $('#add_searchbox')
         .click(function(event) {
@@ -815,7 +815,7 @@ function setupUI() {
             }
             event.preventDefault();
         });
-        
+
     /*** MODALS ***/
     $('#about-modal')
         .on('beforeshow', function() {
@@ -850,7 +850,7 @@ function setupUI() {
              $('#imageinfo-modal .popup-content').empty();
              $('#imageinfo-modal .popup-content').removeClass("iframe-container");
         })
-    
+
     /*** Model for external tabs, e.g. wikipedia (must create & destroy tabbed content (e.g. iframes)) ***/
     $('#external-modal')
       .on('hidden', function() {
@@ -869,7 +869,7 @@ function setupUI() {
               viewportmeta = document.createElement("meta");
               viewportmeta.setAttribute("name","viewport");
               document.head.appendChild(viewportmeta);
-              
+
               viewportmeta = document.querySelector('meta[name="viewport"]');
             }
             viewportmeta.setAttribute('content', "width=device-width, initial-scale=2, minimum-scale=1.01, maximum-scale=1.01,  user-scalable=0");
@@ -882,7 +882,7 @@ function setupUI() {
         }
         event.stopPropagation();
     });
-    
+
     $('#external-modal .popup-container li').on('hidden', function (event) {
         /* make sure hiding anything within the container does not bubble up
          * and make us think the entire modal has been hidden
@@ -890,7 +890,7 @@ function setupUI() {
         event.stopPropagation();
     });
 
-    setup_location_list($('#search-basic .popular_species'), popular_locations, 
+    setup_location_list($('#search-basic .popular_species'), popular_locations,
         function(event, OZid) {closeAndLeap(event, OZid, $('#search-basic'))});
 
     var existing_searchresults = onezoom.controller.list_all_marked().filter(function(id_col) {return !isNaN(id_col[0])});
@@ -910,9 +910,9 @@ function setupUI() {
         //add 2 searchboxes as default
         add_advanced_searchbox();
         add_advanced_searchbox();
-        toggleAdvancedSearch(false);        
+        toggleAdvancedSearch(false);
     }
-    
+
 }
 
 $(document).ready(function() {    /* Mainly a place to attach JS event handlers */
@@ -921,19 +921,27 @@ $(document).ready(function() {    /* Mainly a place to attach JS event handlers 
     /** CREATE A ONEZOOM INSTANCE
     this allows us to access e.g. onezoom.controller, onezoom.config, etc (defined in OZentry.js)
      **/
+
     onezoom = OZentry.default(
-        window.server_urls, 
-        window.UI_callbacks, 
+        window.server_urls,
+        window.UI_callbacks,
         window.pagetitle_func,
-        'OneZoomCanvasID', 
-        window.tree_config, 
-        window.rawData, 
+        'OneZoomCanvasID',
+        window.tree_config,
+        window.rawData,
         window.metadata,
-        window.cut_position_map_json_str, 
-        window.polytomy_cut_position_map_json_str, 
+        window.cut_position_map_json_str,
+        window.polytomy_cut_position_map_json_str,
         window.cut_threshold,
         window.tree_date);
     setupUI();
+
+      /** LAKA : force the testing configuration **/
+    $('#OneZoomCanvasID').css('background-color', '#000000');
+    //onezoom.controller.set_view_type("spiral");
+    onezoom.controller.set_view_type("polytomy");
+    //onezoom.controller.set_color_theme("treelife1");
+    onezoom.controller.set_color_theme("treelife2");
 })
 
   </script>
