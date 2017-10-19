@@ -36,6 +36,8 @@ import Polytomy2BranchLayout from './projection/layout/polytomy2/branch_layout';
 import {record_url} from './navigation/record';
 import get_controller from './controller/controller';
 import popularity_theme from './themes/popularity_theme';
+import treelife1_theme from './themes/treelife1_theme';
+import treelife2_theme from './themes/treelife2_theme';
 import config from './global_config';
 
 export let viewtype;
@@ -75,6 +77,10 @@ export function change_color_theme(val) {
     set_theme(at_theme);
   } else if (color_theme == 'popularity') {
     set_theme(popularity_theme);
+  } else if (color_theme == 'treelife1') {
+      set_theme(treelife1_theme);
+  } else if (color_theme == 'treelife2') {
+      set_theme(treelife2_theme);
   }
 }
 

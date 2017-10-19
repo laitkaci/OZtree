@@ -995,12 +995,14 @@ class LeafLayoutBase {
   *
   */
   circle_cut_image(shapes,imageObject,centerpointx,centerpointy,radiusr,borderColor,highlightColor, node) {
-    if (imageObject) {
+  if (imageObject) {
+      let image_radius = config.image_scale * radiusr;
+
       if (highlightColor) {
         let arc_shape = ArcShape.create();
         arc_shape.x = centerpointx;
         arc_shape.y = centerpointy;
-        arc_shape.r = radiusr * 1.05;
+        arc_shape.r = image_radius * 1.05;
         arc_shape.circle = true;
         arc_shape.do_fill = true;
         arc_shape.fill.color = highlightColor;
@@ -1010,7 +1012,7 @@ class LeafLayoutBase {
       let arc_shape = ArcShape.create();
       arc_shape.x = centerpointx;
       arc_shape.y = centerpointy;
-      arc_shape.r = radiusr * 0.975;
+      arc_shape.r = image_radius * 0.975;
       arc_shape.circle = true;
       
       let image_shape = ImageShape.create();

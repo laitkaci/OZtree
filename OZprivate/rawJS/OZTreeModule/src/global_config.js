@@ -2,6 +2,13 @@
  */
  let config = {};
 
+/** LAKA Additionnal parameters
+ */
+ config.image_scale = 2.0;
+ config.image_scale_node = 2.0;
+ config.branch_width = 0.02;
+ config.image_opacity = 0.65;
+
 /**
   * @property {object}  factory                - 
   * @property {number}  factory.child_num      - The number of children per node.
@@ -121,7 +128,8 @@ config.projection = {
 }
 
 config.render = {
-  font_type: "Helvetica"
+    font_type: "Helvetica"
+    //font_type: "sans-serif"
 }
 
 config.pic = {

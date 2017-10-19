@@ -7,6 +7,7 @@ import * as tree_setting from '../../tree_setting';
 import {get_image, image_ready} from '../../image_cache'
 import {global_button_action} from '../../button_manager';
 import {live_area_config} from '../live_area_config';
+import config from '../../global_config';
 
 class SignpostLayoutBase {
   get_shapes(node, shapes) {
@@ -61,28 +62,30 @@ class SignpostLayoutBase {
       let image = get_image(pic_info[0],pic_info[1]);
       if (!image_ready(image)) return;
       
+      let radius = config.image_scale * this.centerr * 0.97 * 0.6;
+
       let image_shape = ImageShape.create();
       image_shape.src = pic_info[0];  
       image_shape.filename = pic_info[1];  
-      image_shape.x = this.centerx - this.centerr * 0.97 * 0.6;
-      image_shape.y = this.centery - this.centerr * 0.97 * 0.6;
-      image_shape.w = this.centerr * 2 * 0.97 * 0.6;
-      image_shape.h = this.centerr * 2 * 0.97 * 0.6;
+      image_shape.x = this.centerx - radius;
+      image_shape.y = this.centery - radius;
+      image_shape.w = radius * 2;
+      image_shape.h = radius * 2;
       image_shape.height = 5;
       let arc_shape = ArcShape.create();
       arc_shape.x = this.centerx;
       arc_shape.y = this.centery;
-      arc_shape.r = this.centerr * 0.97 * 0.6;
+      arc_shape.r = radius;
       arc_shape.circle = true;
       image_shape.clip = arc_shape;
       shapes.push(image_shape);
       
       arc_shape = ArcShape.create();
       if (this.hovering) {
-        arc_shape.r = this.centerr * 1.02 * 0.6;
+          arc_shape.r = radius;
         arc_shape.stroke.color = color_theme.get_color("signpost.pic_hover.stroke", node);
       } else {
-        arc_shape.r = this.centerr * 0.6;
+          arc_shape.r = radius;
         arc_shape.stroke.color = color_theme.get_color("signpost.pic.stroke", node);
       }
       arc_shape.x = this.centerx;
@@ -96,7 +99,7 @@ class SignpostLayoutBase {
       arc_shape = ArcShape.create();
       arc_shape.x = this.centerx;
       arc_shape.y = this.centery;
-      arc_shape.r = this.centerr * 0.97 * 0.6;
+      arc_shape.r =radius;
       arc_shape.circle = true;
       arc_shape.height = 6;
       arc_shape.do_stroke = true;

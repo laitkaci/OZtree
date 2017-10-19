@@ -1,4 +1,5 @@
 import {set_horizon_calculator} from '../horizon_calc/horizon_calc';
+import config from '../../global_config';
 
 class SpiralPreCalc {
   constructor() {
@@ -10,7 +11,7 @@ class SpiralPreCalc {
   }
   pre_calc(node, from_root) {
     let angle = from_root ? Math.PI*(3/2) : node.arca;
-    let partl1 = 0.55;
+    let partl1 = config.branch_width;
     if (from_root) {
       node.bezsx =  0;
       node.bezsy =  0; // start y position
@@ -37,7 +38,7 @@ function _pre_calc(node, angle) {
   let thisangleright = 0.22;
   let thisratio1 = 1/1.3;
   let thisratio2 = 1/2.25;
-  let partl1 = 0.55;
+  let partl1 = config.branch_width;
   let tempsinpre = Math.sin(angle);
   let tempcospre = Math.cos(angle);
   let tempsin90pre = Math.sin(angle + Math.PI/2.0);
