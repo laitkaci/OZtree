@@ -15,7 +15,7 @@ export default function (Controller) {
      * @wait2 how many milliseconds to wait after the first flight section before starting the second flight animation
      * @OZid_2 the OneZoom id (not OTTid) for the second location of the flight
      */
-    Controller.prototype.transition_animation = function(wait1,OZid_1,wait2,OZid_2) {
+    Controller.prototype.transition_animation = function(wait1,OZid_1,wait2,OZid_2,finalize_func) {
         // I'd like to enhance this further in future to be more of a generic 'tours' function.  For now this should deal with known use cases that are immediately required.
         // for now try e.g. onezoom.controller.transition_animation(1000,-784479,1000,-786438) in the console.
         // other reccomendations for recording such transitions:
@@ -39,7 +39,7 @@ export default function (Controller) {
                                                                             transition_timer = setTimeout(function()
                                                                                                           {
                                                                                                  
-                                                                                                              self.perform_flight_animation(OZid_2, false,null)
+                                                                                self.perform_flight_animation(OZid_2, false,finalize_func)
                                                                                                           
                                                                                                           
                                                                                                           }, wait2);
